@@ -1,13 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AuthForm from "./components/authForm";
+import SignUp from "./pages/signUp";
+import Login from "./pages/login";
+import Dashboard from "./pages/dashboard";
 import "./index.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AuthForm />,
+    element: <SignUp />,
+  },
+  {
+    path: "/signup",
+    element: <Login />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 ]);
 
