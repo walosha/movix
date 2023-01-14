@@ -5,20 +5,7 @@ import {
   signOut,
 } from "firebase/auth";
 import "firebase/firestore";
-import {
-  getFirestore,
-  query,
-  orderBy,
-  onSnapshot,
-  collection,
-  getDoc,
-  getDocs,
-  addDoc,
-  updateDoc,
-  doc,
-  serverTimestamp,
-  arrayUnion,
-} from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import auth, { db } from "../config/firebase";
 
 const AuthContext = createContext();
@@ -34,13 +21,17 @@ export function AuthProvider({ children }) {
   async function register({ email, password, fullname }, reset, navigate) {
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
-      const usersColRef = await collection(db, "users");
-      await addDoc(usersColRef, {
-        id: user?.user?.uid,
-        fullname,
-        email,
-        password,
-      });
+      const docRef = doc(db, "users", user?.user?.uid);
+      await setDoc(
+        docRef,
+        {
+          id: user?.user?.uid,
+          fullname,
+          email,
+          password,
+        },
+        { merge: true }
+      );
       navigate("/dashboard");
     } catch (error) {
       navigate("/");

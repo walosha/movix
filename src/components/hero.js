@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as TV } from "../assets/tv.svg";
 import { ReactComponent as Hambuger } from "../assets/hambuger.svg";
@@ -6,10 +6,26 @@ import { ReactComponent as Play } from "../assets/play.svg";
 import Imdb from "../assets/imdbLogo.svg";
 import Apple from "../assets/apple.svg";
 import { useAuth } from "../context/Authcontext";
+import { db } from "../config/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 export default function Hero() {
-  const { logout } = useAuth();
+  const { logout, currentUser } = useAuth();
+  const [fullname, setFullname] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    (async (id) => {
+      const docRef = doc(db, "users", id);
+      try {
+        const docSnap = await getDoc(docRef);
+        setFullname(docSnap.data()?.fullname);
+      } catch (error) {
+        console.error(error);
+      }
+    })(currentUser?.uid);
+  }, [currentUser?.uid]);
+
   return (
     <div className="isolate bg-white bg-hero-pattern bg-no-repeat bg-cover mb-12">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"></div>
@@ -21,7 +37,6 @@ export default function Hero() {
           >
             <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
               <a href="/" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
                 <TV />
               </a>
               <p className="text-white">Movix</p>
@@ -57,7 +72,7 @@ export default function Hero() {
             </div>
             <div className="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end">
               <p className="inline-block  px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm ">
-                Hi, Fullname
+                Hi, {fullname}
               </p>
               <div
                 onClick={async () => {
