@@ -28,19 +28,19 @@ export default function Hero() {
             </div>
 
             <div className="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-center lg:gap-x-12">
-              <div class="relative w-full">
+              <div className="relative w-full">
                 <input
                   type="text"
                   id="text"
-                  class="bg-transparent border border-gray-300 text-white text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:border-gray-600 pla placeholder:text-lime-50  dark:focus:ring-white "
+                  className="bg-transparent border border-gray-300 text-white text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:border-gray-600 pla placeholder:text-lime-50  dark:focus:ring-white "
                   placeholder="what do you want to watch?"
                   required
                 />
-                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                   <svg
                     width="20"
                     height="20"
-                    class="DocSearch-Search-Icon"
+                    className="DocSearch-Search-Icon"
                     viewBox="0 0 20 20"
                   >
                     <path

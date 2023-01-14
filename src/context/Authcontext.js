@@ -43,6 +43,7 @@ export function AuthProvider({ children }) {
       });
       navigate("/dashboard");
     } catch (error) {
+      navigate("/");
       if (error.code === "auth/email-already-in-use") {
         reset("email", { message: "That email address is already in use!" });
       } else if (error.code === "auth/invalid-email") {
@@ -55,18 +56,19 @@ export function AuthProvider({ children }) {
 
   async function login({ email, password }, reset, navigate) {
     try {
-      const error = await signInWithEmailAndPassword(auth, email, password);
-      console.log({ error });
+      await signInWithEmailAndPassword(auth, email, password);
       navigate("/dashboard");
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         reset("email", {
-          message: "That email address incorrect user or password",
+          message: "The email or password incorrect",
         });
       } else if (error.code === "auth/wrong-password") {
         reset("password", { message: "That password is incorrect!" });
+      } else if (error.code === "auth/network-request-failed") {
+        reset("email", { message: "No network connection" });
       } else {
-        reset("email", { message: error });
+        console.log({ message: error });
       }
     }
   }

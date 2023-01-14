@@ -14,7 +14,7 @@ export default function SignUp() {
     handleSubmit,
     control,
     setError,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
   } = useForm({
     defaultValues: {
       fullname: "",
@@ -26,6 +26,7 @@ export default function SignUp() {
   const onSubmit = (data) => {
     register(data, setError, navigate);
   };
+  console.log({ isSubmitSuccessful });
   return (
     <AuthForm
       title="Hi, Welcome"
@@ -35,10 +36,10 @@ export default function SignUp() {
       routeText="Login"
       btnText="REGISTER"
       inputOptions={inputOptions}
-      onSubmit={onSubmit}
-      handleSubmit={handleSubmit}
+      handleSubmit={handleSubmit(onSubmit)}
       control={control}
       errors={errors}
+      isLoading={isSubmitSuccessful}
     />
   );
 }
