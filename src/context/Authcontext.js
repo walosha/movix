@@ -55,7 +55,8 @@ export function AuthProvider({ children }) {
 
   async function login({ email, password }, reset, navigate) {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const error = await signInWithEmailAndPassword(auth, email, password);
+      console.log({ error });
       navigate("/dashboard");
     } catch (error) {
       if (error.code === "auth/user-not-found") {

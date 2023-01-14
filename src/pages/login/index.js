@@ -14,7 +14,7 @@ export default function Login() {
     handleSubmit,
     control,
     setError,
-    formState: { errors },
+    formState: { errors, isLoading },
   } = useForm({
     defaultValues: {
       email: "",
@@ -25,7 +25,7 @@ export default function Login() {
   const onSubmit = (data) => {
     login(data, setError, navigate);
   };
-
+  console.log({ isLoading });
   return (
     <AuthForm
       title="Hi, Welcome"
@@ -35,8 +35,8 @@ export default function Login() {
       routeText="Register"
       btnText="LOGIN"
       inputOptions={inputOptions}
-      onSubmit={onSubmit}
-      handleSubmit={handleSubmit}
+      isLoading={isLoading}
+      handleSubmit={handleSubmit(onSubmit)}
       control={control}
       errors={errors}
     />
