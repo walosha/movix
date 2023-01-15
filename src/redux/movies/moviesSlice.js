@@ -7,6 +7,7 @@ export const fetchFeatured = createAsyncThunk("movies/getFeatures", () => {
     "/movie/upcoming",
     "/movie/760161/credits",
     "/movie/899112/videos",
+    "/genre/movie/list",
   ];
   return Promise.all(endpoints.map((endpoint) => moviedb.get(endpoint))).then(
     ([
@@ -14,13 +15,18 @@ export const fetchFeatured = createAsyncThunk("movies/getFeatures", () => {
       { data: newArrivals },
       { data: casts },
       { data: videos },
+      { data: genres },
     ]) => {
-      console.log({ videos });
+      let genresMap = {};
+      genres.genres?.forEach(({ id, name }) => {
+        genresMap[id] = { id, name };
+      });
       return {
         featured,
         newArrivals,
         casts: casts?.cast || [],
         videos: videos?.results || [],
+        genres: genresMap || {},
       };
     }
   );
@@ -31,6 +37,7 @@ export const moviesSlice = createSlice({
   initialState: {
     featured: [],
     newArrivals: [],
+    genre: {},
     casts: [],
     videos: [],
     status: "idle",
@@ -52,6 +59,7 @@ export const moviesSlice = createSlice({
         state.newArrivals = action.payload.newArrivals;
         state.casts = action.payload.casts;
         state.videos = action.payload.videos;
+        state.genres = action.payload.genres;
       })
       .addCase(fetchFeatured.rejected, (state, action) => {
         state.status = "failed";

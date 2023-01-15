@@ -5,6 +5,7 @@
 .slick-prev,
 .slick-next {
   font-size: 15px !important;
+  top: 37%;
 }
 
 .slick-prev:before,

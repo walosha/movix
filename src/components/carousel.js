@@ -6,7 +6,6 @@ import SlideFwd from "../assets/SlideFwd.svg";
 export default function carousel({ children, slidesToShow = 4 }) {
   var settings = {
     infinite: true,
-    speed: 500,
     slidesToShow: slidesToShow,
     slidesToScroll: 4,
     initialSlide: 0,
