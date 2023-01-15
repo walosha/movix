@@ -3,11 +3,11 @@ import Slider from "react-slick";
 import SlideBwd from "../assets/slideBwd.svg";
 import SlideFwd from "../assets/SlideFwd.svg";
 
-export default function carousel({ children }) {
+export default function carousel({ children, slidesToShow = 4 }) {
   var settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: slidesToShow,
     slidesToScroll: 4,
     initialSlide: 0,
     prevArrow: <NavButton Icon={SlideBwd} />,

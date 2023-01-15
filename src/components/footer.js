@@ -6,9 +6,9 @@ import { ReactComponent as Instagram } from "../assets/instagram.svg";
 
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-gray-900 pb-10 pt-36">
-      <div className="py-8 px-4 mx-auto max-w-screen-sm lg:py-8 lg:px-6">
-        <div className="flex justify-evenly">
+    <footer className="bg-white dark:bg-gray-900 pb-10 pt-16">
+      <div className="py-8 px-4 mx-auto lg:w-1/5 lg:py-8 lg:px-6">
+        <div className="flex justify-evenly items-center">
           <Facebook />
           <Instagram />
           <Youtube />

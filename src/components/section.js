@@ -1,9 +1,7 @@
 import React from "react";
-import ChevronRight from "../../assets/chevronRight.svg";
-import Carousel from "../carousel";
-import MovieCard from "./movieCard";
+import ChevronRight from "../assets/chevronRight.svg";
 
-export default function MovieSection({ header }) {
+export default function MovieSection({ header, children }) {
   return (
     <section className="mb-20 bg-white dark:bg-gray-900">
       <div className="px-4 mx-auto max-w-screen-2xl lg:px-6">
@@ -20,11 +18,7 @@ export default function MovieSection({ header }) {
             </div>
           </div>
         </div>
-        <Carousel>
-          {[1, 2, 3, 5, 8, 9, 9, 12, 13, 14, 15, 22, 44, 66]?.map((el) => (
-            <MovieCard key={el} />
-          ))}
-        </Carousel>
+        {children}
       </div>
     </section>
   );
