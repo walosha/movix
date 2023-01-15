@@ -6,6 +6,7 @@ import { schema } from "./validation";
 import { inputOptions } from "./contant";
 import { useAuth } from "../../context/Authcontext";
 import { useNavigate } from "react-router-dom";
+import Helmet from "../../components/helmet";
 
 export default function SignUp() {
   const [loading, setLoading] = useState(false);
@@ -31,18 +32,20 @@ export default function SignUp() {
     setLoading(false);
   };
   return (
-    <AuthForm
-      title="Hi, Welcome"
-      intro="Please sign-in to your account and start your experience"
-      route="/login"
-      btmText="Already have an account?"
-      routeText="Login"
-      btnText="REGISTER"
-      inputOptions={inputOptions}
-      handleSubmit={handleSubmit(onSubmit)}
-      control={control}
-      errors={errors}
-      isLoading={isSubmitting || loading}
-    />
+    <Helmet title="Welcome">
+      <AuthForm
+        title="Hi, Welcome"
+        intro="Please sign-in to your account and start your experience"
+        route="/login"
+        btmText="Already have an account?"
+        routeText="Login"
+        btnText="REGISTER"
+        inputOptions={inputOptions}
+        handleSubmit={handleSubmit(onSubmit)}
+        control={control}
+        errors={errors}
+        isLoading={isSubmitting || loading}
+      />
+    </Helmet>
   );
 }

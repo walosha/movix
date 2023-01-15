@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./validation";
 import { inputOptions } from "./contant";
+import Helmet from "../../components/helmet";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
@@ -31,18 +32,20 @@ export default function Login() {
   };
 
   return (
-    <AuthForm
-      title="Hi, Welcome"
-      intro="Please sign-up to start your experience"
-      route="/"
-      btmText="Don’t have an account?"
-      routeText="Register"
-      btnText="LOGIN"
-      inputOptions={inputOptions}
-      isLoading={isSubmitting || loading}
-      handleSubmit={handleSubmit(onSubmit)}
-      control={control}
-      errors={errors}
-    />
+    <Helmet title="login">
+      <AuthForm
+        title="Hi, Welcome"
+        intro="Please sign-up to start your experience"
+        route="/"
+        btmText="Don’t have an account?"
+        routeText="Register"
+        btnText="LOGIN"
+        inputOptions={inputOptions}
+        isLoading={isSubmitting || loading}
+        handleSubmit={handleSubmit(onSubmit)}
+        control={control}
+        errors={errors}
+      />
+    </Helmet>
   );
 }

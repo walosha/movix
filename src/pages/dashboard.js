@@ -7,6 +7,7 @@ import Footer from "../components/footer";
 import VideoPlayer from "../components/videoPlayer";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFeatured } from "../redux/movies/moviesSlice";
+import Helmet from "../components/helmet";
 
 export default function Dashboard() {
   const featured = useSelector((state) => state.movies);
@@ -16,7 +17,7 @@ export default function Dashboard() {
   }, [dispatch]);
 
   return (
-    <div>
+    <Helmet title="login">
       <Hero />
       <Section header="Featured Movie">
         <Carousel>
@@ -48,6 +49,6 @@ export default function Dashboard() {
       </Section>
 
       <Footer />
-    </div>
+    </Helmet>
   );
 }
