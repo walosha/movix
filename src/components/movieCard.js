@@ -76,7 +76,7 @@ export default function MovieCard({
                   <img src={Apple} alt="Apple" />
                 </div>
                 <p className="text-sm pl-2">
-                  {Number(vote_average * 10).toFixed(2) + "%"}
+                  {Number(vote_average * 10) + "%"}
                 </p>
               </div>
             </div>
