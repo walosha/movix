@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthForm from "../../components/authForm";
 import { useAuth } from "../../context/Authcontext";
 import { useNavigate } from "react-router-dom";
@@ -8,13 +8,14 @@ import { schema } from "./validation";
 import { inputOptions } from "./contant";
 
 export default function Login() {
+  const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
   const {
     handleSubmit,
     control,
     setError,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
       email: "",
@@ -22,8 +23,11 @@ export default function Login() {
     },
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => {
-    login(data, setError, navigate);
+
+  const onSubmit = async (data) => {
+    setLoading(true);
+    await login(data, setError, navigate);
+    setLoading(false);
   };
 
   return (
@@ -35,7 +39,7 @@ export default function Login() {
       routeText="Register"
       btnText="LOGIN"
       inputOptions={inputOptions}
-      isLoading={isSubmitSuccessful}
+      isLoading={isSubmitting || loading}
       handleSubmit={handleSubmit(onSubmit)}
       control={control}
       errors={errors}

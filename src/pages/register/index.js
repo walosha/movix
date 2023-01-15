@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import AuthForm from "../../components/authForm";
@@ -8,13 +8,15 @@ import { useAuth } from "../../context/Authcontext";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
+  const [loading, setLoading] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
+
   const {
     handleSubmit,
     control,
     setError,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
       fullname: "",
@@ -23,8 +25,10 @@ export default function SignUp() {
     },
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => {
-    register(data, setError, navigate);
+  const onSubmit = async (data) => {
+    setLoading(true);
+    await register(data, setError, navigate);
+    setLoading(false);
   };
   return (
     <AuthForm
@@ -38,7 +42,7 @@ export default function SignUp() {
       handleSubmit={handleSubmit(onSubmit)}
       control={control}
       errors={errors}
-      isLoading={isSubmitSuccessful}
+      isLoading={isSubmitting || loading}
     />
   );
 }

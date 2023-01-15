@@ -58,6 +58,11 @@ export function AuthProvider({ children }) {
         reset("password", { message: "That password is incorrect!" });
       } else if (error.code === "auth/network-request-failed") {
         reset("email", { message: "No network connection" });
+      } else if (error.code === "auth/too-many-requests") {
+        reset("email", {
+          message:
+            "Access to this account has been temporarily disabled due to many failed login attempts",
+        });
       } else {
         console.log({ message: error });
       }

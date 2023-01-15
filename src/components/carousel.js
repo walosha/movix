@@ -19,7 +19,6 @@ export default function carousel({ children, slidesToShow = 4 }) {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true,
         },
       },
       {
