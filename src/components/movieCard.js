@@ -18,11 +18,13 @@ export default function MovieCard({ cast }) {
       </div>
       <div className="flex flex-col py-3">
         {!cast && (
-          <p className="text-xs my-2 font-thin text-left">
+          <p className="font-dmssans font-regular text-xs my-2 font-thin text-left">
             USA, 2016 - Current
           </p>
         )}
-        <p className="text-base  my-2 text-left">Stranger Things</p>
+        <p className="font-dmssans font-bold text-base  my-2 text-left">
+          Stranger Things
+        </p>
         {!cast && (
           <>
             <div className="flex justify-between my-2">
@@ -40,7 +42,7 @@ export default function MovieCard({ cast }) {
                 <p className="text-sm pl-2">97%</p>
               </div>
             </div>
-            <p className="text-xs font-thin text-left">
+            <p className="font-dmssans text-xs font-thin text-left">
               Action, Adventure, Horror
             </p>
           </>

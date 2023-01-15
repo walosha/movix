@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400;1,500;1,700&display=swap");
 
 .slick-prev,
 .slick-next {
@@ -22,7 +21,41 @@
   margin-top: 45px;
 }
 
-/* @font-face {
-    font-family: "ADELIA";
-    src: url("../public/fonts/ADELIA.otf");
-  } */
+@font-face {
+  font-family: "dms sans";
+  src: url("assets/fonts/dms_sans/DMSans-BoldItalic.ttf");
+  font-weight: boldItalic;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "dms sans";
+  src: url("assets/fonts/dms_sans/DMSans-Bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "dms sans";
+  src: url("assets/fonts/dms_sans/DMSans-Italic.ttf");
+  font-weight: italic;
+  font-style: normal;
+}
+@font-face {
+  font-family: "dms sans";
+  src: url("assets/fonts/dms_sans/DMSans-Medium.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "dms sans";
+  src: url("assets/fonts/dms_sans/DMSans-MediumItalic.ttf");
+  font-weight: mediumitalic;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "dms sans";
+  src: url("assets/fonts/dms_sans/DMSans-Regular.ttf");
+  font-weight: regular;
+  font-style: normal;
+}

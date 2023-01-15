@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -6,8 +8,16 @@ module.exports = {
       backgroundImage: {
         "hero-pattern": "url('assets/hero.svg')",
       },
+      // fontFamily: {
+      //   poppins: ["Poppins", "sans-serif"],
+      // },
       fontFamily: {
-        poppins: ["Poppins", "sans-serif"],
+        dmssans: [
+          "'dms sans'",
+          "Proxima Nova",
+          "Inter",
+          ...defaultTheme.fontFamily.sans,
+        ],
       },
     },
   },

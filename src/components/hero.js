@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as TV } from "../assets/tv.svg";
 import { ReactComponent as Hambuger } from "../assets/hambuger.svg";
 import { ReactComponent as Play } from "../assets/play.svg";
@@ -8,19 +8,25 @@ import Apple from "../assets/apple.svg";
 import { useAuth } from "../context/Authcontext";
 import { db } from "../config/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { ReactComponent as Loader } from "../assets/loader.svg";
 
 export default function Hero() {
   const { logout, currentUser } = useAuth();
   const [fullname, setFullname] = useState("");
+  const [isloading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoading(true);
     (async (id) => {
       const docRef = doc(db, "users", id);
       try {
         const docSnap = await getDoc(docRef);
         setFullname(docSnap.data()?.fullname);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
+        setFullname("an error occurred!");
         console.error(error);
       }
     })(currentUser?.uid);
@@ -32,14 +38,19 @@ export default function Hero() {
       <div className="px-6 pt-6 lg:px-8">
         <div>
           <nav
-            className="flex h-9 items-center justify-between"
+            className="flex h-9 items-center justify-between px-4 mx-auto max-w-screen-2xl lg:px-20"
             aria-label="Global"
           >
-            <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
-              <a href="/" className="-m-1.5 p-1.5">
+            <div
+              className="flex items-center lg:min-w-0 lg:flex-1"
+              aria-label="Global"
+            >
+              <Link to="/" className="p-1.5 mr-2">
                 <TV />
-              </a>
-              <p className="text-white">Movix</p>
+              </Link>
+              <p className="font-dmssans text-base font-bold text-white">
+                Movix
+              </p>
             </div>
 
             <div className="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-center lg:gap-x-12">
@@ -47,7 +58,7 @@ export default function Hero() {
                 <input
                   type="text"
                   id="text"
-                  className="bg-transparent border border-gray-300 text-white text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:border-gray-600 pla placeholder:text-lime-50  dark:focus:ring-white "
+                  className="font-dmssans bg-transparent border border-gray-300 text-white text-sm rounded-lg focus:ring-white focus:border-white block w-full p-2.5 dark:border-gray-600 pla placeholder:text-lime-50  dark:focus:ring-white "
                   placeholder="what do you want to watch?"
                   required
                 />
@@ -70,10 +81,14 @@ export default function Hero() {
                 </div>
               </div>
             </div>
-            <div className="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end">
-              <p className="inline-block  px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm ">
-                Hi, {fullname}
-              </p>
+            <div className="hidden lg:flex items-center lg:min-w-0 lg:flex-1 lg:justify-end">
+              {isloading ? (
+                <Loader />
+              ) : (
+                <p className="font-dmssansinline-block  px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm ">
+                  Hi, {fullname}
+                </p>
+              )}
               <div
                 onClick={async () => {
                   await logout({ navigate });
@@ -86,45 +101,43 @@ export default function Hero() {
           </nav>
         </div>
       </div>
-      <main>
+      <main className="px-4 mx-auto max-w-screen-2xl lg:px-0">
         <div className="relative px-6 lg:px-8">
           <div className="max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
             <div className="px-14">
-              <h1 className="text-4xl text-white font-bold tracking-tight sm:text-left sm:text-6xl">
-                John Wick 3 :
-              </h1>
-              <h1 className="text-4xl text-white font-bold tracking-tight sm:text-left sm:text-6xl">
-                Parabellum
-              </h1>
-              <div className="my-8 flex gap-x-4 sm:justify-left items-center">
-                <div className="">
+              <div className="mb-4">
+                <h1 className="font-dmssans text-4xl text-white font-bold tracking-tight sm:text-left sm:text-6xl">
+                  John Wick 3 :
+                </h1>
+                <h1 className="font-dmssans text-4xl text-white font-bold tracking-tight sm:text-left sm:text-6xl">
+                  Parabellum
+                </h1>
+              </div>
+              <div className="flex gap-x-4 sm:justify-left items-center">
+                <div>
                   <img src={Imdb} alt="imdb logo" />
                 </div>
-                <p className="text-sm text-white">86.0 / 100</p>
+                <p className="font-dmssans text-sm text-white">86.0 / 100</p>
                 <div className="">
                   <img src={Apple} alt="Apple" />
                 </div>
-                <p className="text-sm text-white">97%</p>
+                <p className="font-dmssans text-sm text-white">97%</p>
               </div>
-              Apple
-              <p className="mt-6 text-sm text-white leading-8 sm:text-left">
+              <p className="font-dmssans font-bold mt-2 text-sm text-white leading-8 sm:text-left lg:w-3/5 md:w-1/2">
                 John Wick is on the run after killing a member of the
                 international assassins' guild, and with a $14 million price tag
                 on his head, he is the target of hit men and women everywhere.
               </p>
               <div className="mt-8 flex gap-x-4 sm:justify-left">
-                <a
-                  href="/"
-                  className="inline-block  bg-rose-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700"
-                >
-                  <span
-                    className="text-indigo-200 inline-block"
-                    aria-hidden="true"
-                  >
+                <div className="flex items-center bg-rose-600 rounded-sm px-4 py-1.5 text-base font-semibold leading-7 text-white cursor-pointer">
+                  <span className="text-indigo-200 mr-2" aria-hidden="true">
                     <Play />{" "}
                   </span>
-                  <span className="inline-block"> WATCH TRAILER</span>{" "}
-                </a>
+                  <span className="font-dmssans inline-block">
+                    {" "}
+                    WATCH TRAILER
+                  </span>{" "}
+                </div>
               </div>
             </div>
           </div>
