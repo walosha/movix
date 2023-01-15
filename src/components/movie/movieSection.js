@@ -22,7 +22,7 @@ export default function MovieSection({ header }) {
         </div>
         <Carousel>
           {[1, 2, 3, 5, 8, 9, 9, 12, 13, 14, 15, 22, 44, 66]?.map((el) => (
-            <MovieCard />
+            <MovieCard key={el} />
           ))}
         </Carousel>
       </div>

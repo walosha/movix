@@ -76,8 +76,7 @@ export default function Hero() {
               </p>
               <div
                 onClick={async () => {
-                  await logout();
-                  navigate("/");
+                  await logout({ navigate });
                 }}
                 className="bg-red-700  rounded-full w-11 h-11 py-4 px-3 cursor-pointer"
               >

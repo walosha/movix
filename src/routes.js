@@ -4,6 +4,8 @@ import Error from "./pages/error";
 import Register from "./pages/register";
 import Login from "./pages/login";
 import Dashboard from "./pages/dashboard";
+import ProtectedRoute from "./pages/protected";
+
 export const routes = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +24,14 @@ export const routes = createBrowserRouter([
   },
 
   {
-    path: "/dashboard",
-    element: <Dashboard />,
+    path: "/",
+    element: <ProtectedRoute />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+    ],
   },
 ]);

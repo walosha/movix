@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import { useAuth } from "./context/Authcontext";
+import { useAuth } from "../../context/Authcontext";
 import { Outlet, useNavigate } from "react-router-dom";
 
-export default function App() {
+export default function ProtectedRoute() {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
-    if (currentUser) {
-      navigate("/dashboard");
+    if (!currentUser) {
+      navigate("/");
       return;
     }
   });

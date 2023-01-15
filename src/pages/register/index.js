@@ -26,7 +26,6 @@ export default function SignUp() {
   const onSubmit = (data) => {
     register(data, setError, navigate);
   };
-  console.log({ isSubmitSuccessful });
   return (
     <AuthForm
       title="Hi, Welcome"

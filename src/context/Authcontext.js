@@ -64,7 +64,8 @@ export function AuthProvider({ children }) {
     }
   }
 
-  function logout() {
+  function logout({ navigate }) {
+    navigate("/");
     return signOut(auth);
   }
 
