@@ -15,6 +15,8 @@ export default function MovieCard({
   name,
   release_date,
   genres,
+  vote_average,
+  ...others
 }) {
   return (
     <div className=" flex flex-col mx-auto max-w-lg text-center text-gray-900 bg-white">
@@ -64,14 +66,18 @@ export default function MovieCard({
                 <div className="pr-2">
                   <img src={Imdb} alt="imdb logo" />
                 </div>
-                <p className="text-xs">86.0 / 100</p>
+                <p className="text-xs">
+                  {Number(vote_average * 10).toFixed(2)} / 100
+                </p>
               </div>
 
               <div className="flex">
                 <div className="pl-2">
                   <img src={Apple} alt="Apple" />
                 </div>
-                <p className="text-sm pl-2">97%</p>
+                <p className="text-sm pl-2">
+                  {Number(vote_average * 10).toFixed(2) + "%"}
+                </p>
               </div>
             </div>
             <div className="text-left">
