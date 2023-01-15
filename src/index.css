@@ -2,7 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400;1,500;1,700&display=swap");
+.slick-prev,
+.slick-next {
+  font-size: 15px !important;
+}
 
+.slick-prev:before,
+.slick-next:before {
+  content: "" !important;
+}
+
+.slick-slide > div {
+  display: grid;
+  place-items: center;
+  width: 70%;
+  margin: auto;
+  padding: 0px;
+  margin-top: 45px;
+}
 /* @font-face {
     font-family: "ADELIA";
     src: url("../public/fonts/ADELIA.otf");

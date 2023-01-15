@@ -1,7 +1,7 @@
 import React from "react";
 
 import Hero from "../components/hero";
-import MovieSection from "../components/movieSection";
+import MovieSection from "../components/movie/movieSection";
 import Footer from "../components/footer";
 
 export default function Dashboard() {
