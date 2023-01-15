@@ -2,11 +2,37 @@ import React from "react";
 import Imdb from "../assets/imdbLogo.svg";
 import Apple from "../assets/apple.svg";
 import { ReactComponent as Heart } from "../assets/heart.svg";
+import { clsxm } from "../util/clsxlm";
 
-export default function MovieCard({ cast }) {
+export default function MovieCard({
+  cast,
+  backdrop_path,
+  original_title,
+  genre_ids,
+  poster_path,
+  title,
+  profile_path,
+  name,
+  release_date,
+}) {
   return (
     <div className=" flex flex-col mx-auto max-w-lg text-center text-gray-900 bg-white">
-      <div className="border h-96  w-60 bg-no-repeat  bg-cover bg-[url('https://image.tmdb.org/t/p/w342/7CNCv9uhqdwK7Fv4bR4nmDysnd9.jpg')]">
+      <div
+        style={{
+          background: `url(https://image.tmdb.org/t/p/w342${
+            cast ? profile_path : poster_path
+          })`,
+        }}
+        // eslint-disable-next-line no-template-curly-in-string
+        className={clsxm([
+          "border",
+          "h-96",
+          "w-60",
+          "bg-no-repeat",
+          "bg-cover",
+          `bg-[url(https://image.tmdb.org/t/p/w342${poster_path})]`,
+        ])}
+      >
         <div className="pl-2 text-end m-4">
           <div
             style={{ background: "#f3f4f680" }}
@@ -19,11 +45,11 @@ export default function MovieCard({ cast }) {
       <div className="flex flex-col py-3">
         {!cast && (
           <p className="font-dmssans font-regular text-xs my-2 font-thin text-left">
-            USA, 2016 - Current
+            USA, {release_date} - Current
           </p>
         )}
         <p className="font-dmssans font-bold text-base  my-2 text-left">
-          Stranger Things
+          {cast ? name : original_title}{" "}
         </p>
         {!cast && (
           <>
@@ -43,7 +69,7 @@ export default function MovieCard({ cast }) {
               </div>
             </div>
             <p className="font-dmssans text-xs font-thin text-left">
-              Action, Adventure, Horror
+              {genre_ids}{" "}
             </p>
           </>
         )}

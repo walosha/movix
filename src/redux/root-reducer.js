@@ -3,6 +3,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import { userReducer } from "./users/reducer";
+import moviesReducer from "./movies/moviesSlice";
 
 const persistConfig = {
   key: "root",
@@ -11,6 +12,7 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({
   user: userReducer,
+  movies: moviesReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

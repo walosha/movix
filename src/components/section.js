@@ -1,7 +1,7 @@
 import React from "react";
 import ChevronRight from "../assets/chevronRight.svg";
 
-export default function MovieSection({ header, children }) {
+export default function Section({ header, children }) {
   return (
     <section className="mb-20 bg-white dark:bg-gray-900">
       <div className="px-4 mx-auto max-w-screen-2xl lg:px-6">

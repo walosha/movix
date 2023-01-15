@@ -61,7 +61,6 @@ export default function AuthForm({
                 className="w-full text-white mt-8  hover:bg-primary-700 focus:ring-4 bg-black focus:outline-none focus:ring-primary-300 font-medium rounded-md text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
                 {isLoading && <Loader />}
-
                 {isLoading ? "please wait..." : btnText}
               </button>
               <p className="mt-10 text-sm text-center font-light text-gray-500 dark:text-gray-400">

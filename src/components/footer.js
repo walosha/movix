@@ -16,17 +16,17 @@ export default function Footer() {
         </div>
       </div>
       <div className="mx-auto max-w-screen-sm flex justify-evenly">
-        <p className="inline-block  px-3 py-1.5 text-md font-semibold leading-6  shadow-sm ">
+        <p className="font-dmssans inline-block  px-3 py-1.5 text-md font-semibold leading-6  shadow-sm ">
           Conditions of Use
         </p>
-        <p className="inline-block  px-3 py-1.5 text-md font-semibold leading-6  shadow-sm ">
+        <p className="font-dmssans inline-block  px-3 py-1.5 text-md font-semibold leading-6  shadow-sm ">
           Privacy & Policy
         </p>
-        <p className="inline-block  px-3 py-1.5 text-md font-semibold leading-6  shadow-sm ">
+        <p className="font-dmssans inline-block  px-3 py-1.5 text-md font-semibold leading-6  shadow-sm ">
           Press Room
         </p>
       </div>
-      <div className="flex justify-evenly">
+      <div className="font-dmssans flex justify-evenly">
         <p className="inline-block  px-3 py-1.5 text-md font-medium leading-6  shadow-sm ">
           © 2021 Movix{" "}
         </p>
